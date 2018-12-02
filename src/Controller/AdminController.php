@@ -11,19 +11,26 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin")
+     * @param UserInterface|null $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function index()
+    public function index(UserInterface $user = null)
     {
+        if (!$user) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         return $this->render('admin/index.html.twig');
     }
-
+    
     /**
      * @Route("/review", name="review")
+     * @param UserInterface|null $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function review(UserInterface $user = null)
     {
         if (!$user) {
-            $this->redirectToRoute('fos_user_security_login');
+            return $this->redirectToRoute('fos_user_security_login');
         }
         if (in_array('ROLE_MENTORIUS', $user->getRoles())) {
             return $this->render('admin/review.html.twig');
