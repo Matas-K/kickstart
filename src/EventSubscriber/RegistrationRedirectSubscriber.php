@@ -20,8 +20,8 @@ class RegistrationRedirectSubscriber implements EventSubscriberInterface
     public function onFosUserRegistrationSuccess(FormEvent $event)
     {
         $url = $this->router->generate('admin');
-        $respononse = new RedirectResponse($url);
-        $event->setResponse($respononse);
+        $response = new RedirectResponse($url);
+        $event->setResponse($response);
     }
 
     /**
