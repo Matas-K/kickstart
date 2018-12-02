@@ -19,6 +19,12 @@
                 <span class="badge badge-secondary">WebSite</span>
             </div>
         {% endif %}
+        {% if app.user.linkedin %}
+            <div class="p2">
+                <a href="{{ app.user.linkedin }}">{{ app.user.linkedin }}</a>
+                <span class="badge badge-secondary">LinkedIn</span>
+            </div>
+        {% endif %}
     </div>
 
 
